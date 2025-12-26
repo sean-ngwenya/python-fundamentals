@@ -1,0 +1,31 @@
+import csv
+import json
+
+# file paths
+CSV_FILE = "data.csv"
+JSON_FILE = "data.json"
+
+
+# write CSV data
+def write_csv(data: list[dict]) -> None:
+    with open(CSV_FILE, "w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=data[0].keys())
+        writer.writeheader()
+        writer.writerows(data)
+
+
+# write JSON data
+def write_json(data: list[dict]) -> None:
+    with open(JSON_FILE, "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4)
+
+
+# Example usage
+if __name__ == "__main__":
+    sample_data = [
+        {"name": "Alice", "age": 25},
+        {"name": "Bob", "age": 30},
+    ]
+
+    write_csv(sample_data)
+    write_json(sample_data)
